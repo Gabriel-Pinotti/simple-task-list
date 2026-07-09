@@ -4,8 +4,15 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
+interface Task {
+  id: number
+  name: string
+  completed: boolean
+}
+
 function App() {
   const [count, setCount] = useState(0)
+  const [taskList, setTaskList] = useState<Task[]>([])
 
   return (
     <>
