@@ -7,12 +7,17 @@ function App() {
   ])
   const [taskInput, setTaskInput] = useState<string>("")
 
+  function handleConfirmListAdd() {
+    setTaskList([ ...taskList, {id: Date.now(), name: taskInput, completed: false}])
+    setTaskInput("")
+  }
+
   return (
     <>
       <div className='task-input'>
         <h2>Tasks</h2>
         <input className='task-input-field' onChange={(event) => (setTaskInput(event.target.value))} value={taskInput}/>
-        <button>Adicionar</button>
+        <button onClick={handleConfirmListAdd}>Adicionar</button>
       </div>
 
       <ul className='main-task-list'>
