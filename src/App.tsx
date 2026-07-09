@@ -2,9 +2,7 @@ import { useState } from 'react'
 import type { Task } from './types/task'
 
 function App() {
-  const [taskList, setTaskList] = useState<Task[]>([
-    { id: 1, name: "Criar o app", completed: true} // example task
-  ])
+  const [taskList, setTaskList] = useState<Task[]>([])
   const [taskInput, setTaskInput] = useState<string>("")
 
   function handleConfirmListAdd() {
