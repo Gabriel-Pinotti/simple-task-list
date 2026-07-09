@@ -1,11 +1,5 @@
 import { useState } from 'react'
-import './App.css'
-
-interface Task {
-  id: number
-  name: string
-  completed: boolean
-}
+import type { Task } from './types/task'
 
 function App() {
   const [taskList, setTaskList] = useState<Task[]>([])
