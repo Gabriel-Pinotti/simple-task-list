@@ -9,7 +9,13 @@ function App() {
     setTaskList([ ...taskList, {id: Date.now(), name: taskInputField, completed: false}])
     setTaskInputField("")
   }
-
+  
+  function handleDeleteTask(id: number) {
+    setTaskList(
+      taskList.filter((task) => task.id !== id)
+    )
+  }
+  
   function handleTaskCheck(id: number) {
     setTaskList(
       taskList.map((task) => (
@@ -36,6 +42,7 @@ function App() {
               <label htmlFor={"task-checkbox" + currentTask.id}>
                 {currentTask.name} | status: {currentTask.completed ? "completo" : "incompleto"}
               </label>
+              <button onClick={() => handleDeleteTask(currentTask.id)} >Deletar</button>
             </li>
           ))
         }
