@@ -9,7 +9,9 @@ function App() {
   const [taskInputField, setTaskInputField] = useState<string>("")
 
   function handleConfirmListAdd() {
-    setTaskList([ ...taskList, {id: Date.now(), name: taskInputField, completed: false}])
+    const taskName = taskInputField.trim()
+    if (taskName === "") { return }
+    setTaskList([ ...taskList, {id: Date.now(), name: taskName, completed: false}])
     setTaskInputField("")
   }
   
