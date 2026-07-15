@@ -8,7 +8,8 @@ function App() {
   })
   const [taskInputField, setTaskInputField] = useState<string>("")
 
-  function handleConfirmListAdd() {
+  function handleConfirmListAdd(event: React.SyntheticEvent) {
+    event.preventDefault()
     const taskName = taskInputField.trim()
     if (taskName === "") { return }
     setTaskList([ ...taskList, {id: Date.now(), name: taskName, completed: false}])
@@ -39,8 +40,10 @@ function App() {
     <>
       <div className='task-input'>
         <h2>Tasks</h2>
-        <input className='task-input-field' onChange={(event) => (setTaskInputField(event.target.value))} value={taskInputField}/>
-        <button onClick={handleConfirmListAdd}>Adicionar</button>
+        <form onSubmit={(event) => handleConfirmListAdd(event)}>
+          <input className='task-input-field' onChange={(event) => (setTaskInputField(event.target.value))} value={taskInputField}/>
+          <button type='submit'>Adicionar</button>
+        </form>
       </div>
 
       <ul className='main-task-list'>
