@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Task } from './types/task'
 
 function App() {
-  const [taskList, setTaskList] = useState<Task[]>([])
+  const [taskList, setTaskList] = useState<Task[]>(() => {
+    const saved = localStorage.getItem("taskList")
+    return JSON.parse(saved || "[]")
+  })
   const [taskInputField, setTaskInputField] = useState<string>("")
 
   function handleConfirmListAdd() {
@@ -25,6 +28,10 @@ function App() {
       ))
     )
   }
+
+  useEffect(() => {
+    localStorage.setItem("taskList", JSON.stringify(taskList))
+  }, [taskList])
 
   return (
     <>
