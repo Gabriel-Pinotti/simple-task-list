@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { Task } from './types/task'
+import TaskItem from './components/TaskItem/TaskItem'
 
 function App() {
   const [taskList, setTaskList] = useState<Task[]>(() => {
@@ -49,13 +50,7 @@ function App() {
       <ul className='main-task-list'>
         {
           taskList.map((currentTask) => (
-            <li key={currentTask.id}>
-              <input type='checkbox' checked={currentTask.completed} id={"task-checkbox" + currentTask.id} onChange={() => handleTaskCheck(currentTask.id)}/>
-              <label htmlFor={"task-checkbox" + currentTask.id}>
-                {currentTask.name} | status: {currentTask.completed ? "completo" : "incompleto"}
-              </label>
-              <button onClick={() => handleDeleteTask(currentTask.id)} >Deletar</button>
-            </li>
+            <TaskItem task={currentTask} onDelete={handleDeleteTask} onToggle={handleTaskCheck} key={currentTask.id}/>
           ))
         }
       </ul>
